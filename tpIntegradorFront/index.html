@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro-Arcade Zone - Bienvenida</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="img/favicon-32x32.png">
+    <script defer src="js/main.js"></script>
+    <script>
+        (function() {const temaGuardado = localStorage.getItem("temaArcade") || "dark"; document.documentElement.setAttribute("data-theme", temaGuardado);})();
+    </script>
+</head>
+
+<body>
+    <header class="header-container">
+        <div class="logo">
+            <a href="index.html" class="logo-container">
+                <img src="img/logoretro.png" alt="logo arcade">
+            </a>
+        </div>
+        <h1>Retro - Autoservicio</h1>
+        <button id="btn-tema" onclick="alternarTema()" style="background: none; border: 1px solid var(--accent-neon); padding: 5px 5px; cursor: pointer; border-radius: 8px;">🌙</button>
+    </header>
+
+    <main>
+        <h1 style="margin-bottom: 1%;">Bienvenid@!</h1>
+        <h4>Introducí tu nombre:</h4>
+        
+        <div style="max-width: 400px;">
+            <form id="form-bienvenida">
+                <input type="text" id="bienvenida-nombre" placeholder="Tu nombre..." required>
+                <input class="btn-success" type="submit" value="Enviar">
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const formBienvenida = document.getElementById("form-bienvenida");
+        formBienvenida.addEventListener("submit", event => {
+            event.preventDefault(); // Evitamos que la página se recargue
+
+            const nombreUsuario = document.getElementById("bienvenida-nombre").value;
+
+            if(nombreUsuario.length > 0) {
+                // Guardamos el nombre en el navegador
+                sessionStorage.setItem("nombreUsuario", nombreUsuario);
+                // Redirigimos al tótem de productos
+                window.location.href = "productos.html";
+            }
+        });
+    </script>
+</body>
+</html>
