@@ -28,9 +28,11 @@ async function obtenerProductos() {
 
 // Mostrar productos //
 function mostrarProductos(array) {
+    const contenedor = document.getElementById("contenedor-productos"); 
+    if (!contenedor) return; 
+
     let htmlProductos = "";
-    const contenedor = document.getElementById("contenedor-productos");
-    
+
     if (array.length === 0) {
         contenedor.innerHTML = "<p>No hay fichines disponibles.</p>";
         return;
@@ -47,7 +49,6 @@ function mostrarProductos(array) {
             </div>
         `;
     });
-    
     contenedor.innerHTML = htmlProductos;
 }
 
