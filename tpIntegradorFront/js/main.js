@@ -1,6 +1,6 @@
 let nombreUsuario = sessionStorage.getItem("nombreUsuario");
 
-if(!nombreUsuario){
+if(!nombreUsuario && window.location.pathname.includes("productos.html")){
     window.location.href = "index.html";
 }
 
@@ -117,7 +117,7 @@ function imprimirTicket() {
     doc.setFont("courier", "normal");
     doc.text("Arcade-Ticket de compra", 40, 16, { align: "center" });
     
-    // Linea para que separe y quede prolijo
+    // Línea discontinua
     doc.setLineDash([1, 1], 0);
     doc.line(10, 22, 70, 22);
 
@@ -186,7 +186,6 @@ function alternarTema() {
     document.documentElement.setAttribute("data-theme", nuevoTema);
     localStorage.setItem("temaArcade", nuevoTema);
 }
-// Ejecutar al cargar la pag
 document.addEventListener("DOMContentLoaded", inicializarTema);
 
 // Inicializacion //
@@ -197,5 +196,4 @@ function init() {
     const temaGuardado = localStorage.getItem("temaArcade") || "dark";
     document.documentElement.setAttribute("data-theme", temaGuardado);
 }
-
-init();
+init(); 
