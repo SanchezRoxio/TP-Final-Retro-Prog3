@@ -1,0 +1,21 @@
+<%- include("partials/head.ejs") %>
+<body class="page-login">
+<section class="form-login">
+        <h2><%= about %></h2>
+        <form id="loginForm" class="form-alta" action="/login" method="POST">
+            <label for="emailUser">Email:</label>
+            <input type="email" name="email" id="emailUser" placeholder="text@example.com" required>
+            <label for="passwordUser">Password:</label>
+            <input type="password" name="password" id="passwordUser" placeholder="password" required>
+            <div>
+                <input type="submit" value="Login">
+            </div>    
+        </form>
+</section>
+</body>
+<!-- Mostramos posible mensaje de error si las credenciales fallan -->
+<% if(typeof error !== "undefined") { %> 
+        <p class="mensaje mensaje-error"><%= error %></p>
+<% } %>
+
+<%- include("partials/footer.ejs") %>

@@ -16,16 +16,16 @@
 
     <header>
         <div class="logo">
-            <a href="index.html" class="logo-container">
+            <a href="index.html" class="logo-container" onclick="localStorage.removeItem('carrito')">
                 <img src="img/logoretro.png" alt="logo arcade">
             </a>
         </div>  
         <nav class="navbar">  
             <div class="cart">
-                <span>Carrito: <span id="cart-count"></span> productos</span>
+                <span>🛒 <span id="cart-count"></span></span>
             </div>
         </nav>
-            <a href="index.html" class="nav-link">Inicio</a>    
+            <a href="index.html" class="nav-link" onclick="localStorage.removeItem('carrito')">Inicio</a>    
         <button id="btn-tema" onclick="alternarTema()" style="background: none; border: 1px solid var(--accent-neon); padding: 5px 5px; cursor: pointer; border-radius: 8px;">🌙</button>
     </header>
 
@@ -53,5 +53,8 @@
                 </div>
         </section>
     </main>
+<footer>
+        <p style="text-align: center; margin: 1% 1% 1% 1%;">&copy; 2026 Retro-Arcade Zone</p>
+</footer>
 </body>
 </html>

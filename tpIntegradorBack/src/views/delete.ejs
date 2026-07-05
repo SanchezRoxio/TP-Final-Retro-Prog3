@@ -1,0 +1,22 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<main>
+    <section class="form-productos">
+        <h2><%= about %></h2>
+        
+        <form id="deleteProduct-form">
+            <label for="idProdDelete">ID del Producto a dar de baja</label>
+            <input type="number" name="idProd" id="idProdDelete" required placeholder="Ej: 1">
+            <div>
+                <input type="submit" value="Dar de Baja Permanentemente" style="background-color: var(--btn-danger); color: #fff;">
+            </div>
+        </form>
+    </section>
+
+    <!-- ESTO ES LO QUE TE FALTABA -->
+    <section id="contenedor-productos"></section>
+</main>
+
+<script src="/js/delete.js"></script>
+<%- include("partials/footer.ejs") %>
