@@ -6,7 +6,6 @@
         <h2> <%= about %> </h2>
         
         <div id="contenedor-productos">
-            <!-- EJS renderiza este bucle directamente en el servidor -->
             <% productsArray.forEach(producto => { %>
                 <div class="card-producto">
                     <img src="<%= producto.image %>" alt="<%= producto.name %>">
