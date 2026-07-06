@@ -7,15 +7,14 @@
             <input type="email" name="email" id="emailUser" placeholder="text@example.com" required>
             <label for="passwordUser">Password:</label>
             <input type="password" name="password" id="passwordUser" placeholder="password" required>
+            <% if(typeof error !== "undefined") { %> 
+                    <p class="mensaje mensaje-error" style="text-align: center; color: rgb(250, 4, 4);"><%= error %></p>
+            <% } %>    
             <div>
                 <input type="submit" value="Login">
-            </div>    
+            </div>  
+        
         </form>
 </section>
 </body>
-<!-- Mostramos posible mensaje de error si las credenciales fallan -->
-<% if(typeof error !== "undefined") { %> 
-        <p class="mensaje mensaje-error"><%= error %></p>
-<% } %>
-
 <%- include("partials/footer.ejs") %>
