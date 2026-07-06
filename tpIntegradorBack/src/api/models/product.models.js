@@ -8,7 +8,7 @@ import connection from "../database/db.js";
 // Traer todos los productos
 const selectAllProducts = () => {
     // Optimizamos seleccionando solo las columnas necesarias
-    const sql = "SELECT id, name, price, image FROM products";
+    const sql = "SELECT id, name, price, image FROM products WHERE active = 1";
     return connection.query(sql); 
 }
 
