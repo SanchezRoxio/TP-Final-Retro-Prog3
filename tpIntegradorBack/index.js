@@ -37,6 +37,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/dashboard", viewRoutes);
 app.use("/login", authRoutes);
+app.use("/", viewRoutes);
 
 // Ruta raíz opcional
 app.get("/", (req, res) => {
