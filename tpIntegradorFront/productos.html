@@ -3,58 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro-Arcade Zone - Autoservicio</title> 
+    <title>Retro-Arcade Zone - Autoservicio</title>
+    <!-- Librería jsPDF para generar tickets en formato PDF desde el navegador -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Ícono de la pestaña del navegador -->
     <link rel="shortcut icon" href="img/favicon-32x32.png">
+    <!-- Script principal con defer para que cargue después del HTML -->
     <script defer src="js/main.js"></script>
     <script>
-        (function() {const temaGuardado = localStorage.getItem("temaArcade") || "dark"; document.documentElement.setAttribute("data-theme", temaGuardado);})();
+        /* 
+            Script de inicialización de tema (se ejecuta inmediatamente).
+            Aplicamos el tema ANTES de que cargue el resto del body para
+            evitar el "flash" visual de tema incorrecto al recargar la página.
+        */
+        (function() {
+            const temaGuardado = localStorage.getItem("temaArcade") || "dark";
+            document.documentElement.setAttribute("data-theme", temaGuardado);
+        })();
     </script>
 </head>
 <body>
 
+    <!-- HEADER: Logo, contador del carrito, navegación y botón de tema -->
     <header>
         <div class="logo">
+            <!-- Al hacer clic en el logo se limpia el carrito y se vuelve al inicio -->
             <a href="index.html" class="logo-container" onclick="localStorage.removeItem('carrito')">
                 <img src="img/logoretro.png" alt="logo arcade">
             </a>
         </div>  
         <nav class="navbar">  
+            <!-- Contador de ítems en el carrito, actualizado dinámicamente por main.js -->
             <div class="cart">
                 <span>🛒 <span id="cart-count"></span></span>
             </div>
         </nav>
+            <!-- Enlace para volver al inicio y limpiar el carrito -->
             <a href="index.html" class="nav-link" onclick="localStorage.removeItem('carrito')">Inicio</a>    
+        <!-- Botón para alternar entre tema oscuro y claro -->
         <button id="btn-tema" onclick="alternarTema()" style="background: none; border: 1px solid var(--accent-neon); padding: 5px 5px; cursor: pointer; border-radius: 8px;">🌙</button>
     </header>
 
+    <!-- MAIN: Sección de productos y carrito de compras -->
     <main>
+        <!-- Sección izquierda: grilla de productos -->
         <section class="products-section" style="width: 100%;">
+            <!-- Encabezado con saludo personalizado (se rellena dinámicamente con main.js) -->
             <div id="products-welcome" style="text-align: center; margin-bottom: 30px;">
                 <h2 id="saludo-usuario"></h2>
                 <h2>¿Cuál es tu próximo <span style="color: var(--accent-neon);">High Score</span>?</h2>
             </div>
             
+            <!-- Contenedor de la grilla de productos (se rellena dinámicamente con main.js) -->
             <div class="product-grid" id="contenedor-productos"></div>
         </section>
 
+        <!-- Sección derecha: carrito de compras -->
         <section class="form-productos" style="width: 100%; max-width: 500px; margin-top: 40px;">
                 <h2>Carrito</h2>
+            <!-- Lista de productos en el carrito (se actualiza con mostrarCarrito() en main.js) -->
             <ul id="cart-items" style="list-style: none;">
                 <p class="info-carrito">No hay productos en el carrito.</p>
             </ul>
+                <!-- Total y botones de acción del carrito -->
                 <div class="cart-total" style="text-align: center; margin-top: 20px;">
                     <p>Total: <span id="total-price" class="precio">$0.00</span></p>
                     <div class="bloque-botones-ticket" style="margin-top: 20px;">
+                        <!-- Botón para vaciar el carrito (oculto si el carrito está vacío) -->
                         <button class="hidden btn-danger" id="empty-cart" onclick="vaciarCarrito()">Vaciar</button>
+                        <!-- Botón para generar e imprimir el ticket PDF (oculto si el carrito está vacío) -->
                         <button class="hidden btn-pdf" id="btn-imprimir">Imprimir ticket</button>
                     </div>
                 </div>
         </section>
     </main>
+
+<!-- FOOTER: Pie de página con el copyright -->
 <footer>
-        <p style="text-align: center; margin: 1% 1% 1% 1%;">&copy; 2026 Retro-Arcade Zone</p>
+    <p style="text-align: center; margin: 1% 1% 1% 1%;">&copy; 2026 Retro-Arcade Zone</p>
 </footer>
 </body>
 </html>

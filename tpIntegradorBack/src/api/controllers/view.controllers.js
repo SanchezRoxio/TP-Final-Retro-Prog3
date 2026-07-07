@@ -5,9 +5,14 @@
 // Importamos el modelo de los productos para poder comunicarlos con la BBDD
 import ProductModels from "../models/product.models.js";
 
-// Vista index
+/**
+ * indexView - Renderiza la vista principal del dashboard.
+ * Obtiene todos los productos activos y los pasa a la plantilla EJS.
+ * @route GET /dashboard/index
+ */
 export const indexView = async (req, res) => {
     try {
+        // Consultamos todos los productos para mostrarlos en la tabla del dashboard
         const [rows] = await ProductModels.selectAllProducts();
 
         res.render("index", {
@@ -21,7 +26,10 @@ export const indexView = async (req, res) => {
     }
 };
 
-// Vista GET
+/**
+ * getView - Renderiza la vista para consultar un producto por id.
+ * @route GET /dashboard/get
+ */
 export const getView = (req, res) => {
     res.render("get", {
         title: "Consultar",
@@ -29,7 +37,10 @@ export const getView = (req, res) => {
     });
 };
 
-// Vista POST
+/**
+ * createView - Renderiza la vista para crear un nuevo producto.
+ * @route GET /dashboard/post
+ */
 export const createView = (req, res) => {
     res.render("post", {
         title: "Crear",
@@ -37,7 +48,10 @@ export const createView = (req, res) => {
     });
 };
 
-// Vista PUT
+/**
+ * updateView - Renderiza la vista para modificar un producto existente.
+ * @route GET /dashboard/put
+ */
 export const updateView = (req, res) => {
     res.render("put", {
         title: "Modificar",
@@ -45,7 +59,10 @@ export const updateView = (req, res) => {
     });
 };
 
-// Vista DELETE
+/**
+ * deleteView - Renderiza la vista para eliminar un producto.
+ * @route GET /dashboard/delete
+ */
 export const deleteView = (req, res) => {
     res.render("delete", {
         title: "Eliminar",

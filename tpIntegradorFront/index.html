@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro-Arcade Zone - Bienvenida</title>
+    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Ícono de la pestaña del navegador -->
     <link rel="shortcut icon" href="img/favicon-32x32.png">
+    <!-- Script principal con defer para que cargue después del HTML -->
     <script defer src="js/main.js"></script>
     <script>
-        (function() {const temaGuardado = localStorage.getItem("temaArcade") || "dark"; document.documentElement.setAttribute("data-theme", temaGuardado);})();
+        /* 
+            Script de inicialización de tema (se ejecuta inmediatamente).
+            Aplicamos el tema ANTES de que cargue el resto del body para
+            evitar el "flash" visual de tema incorrecto al recargar la página.
+        */
+        (function() {
+            const temaGuardado = localStorage.getItem("temaArcade") || "dark";
+            document.documentElement.setAttribute("data-theme", temaGuardado);
+        })();
     </script>
 </head>
 
 <body>
+    <!-- HEADER: Contiene el logo, el título y el botón de cambio de tema -->
     <header class="header-container">
         <div class="logo">
+            <!-- Al hacer clic en el logo se limpia el carrito y se vuelve al inicio -->
             <a href="index.html" class="logo-container" onclick="localStorage.removeItem('carrito')">
                 <img src="img/logoretro.png" alt="logo arcade">
             </a>
         </div>
         <h1>Retro - Autoservicio</h1>
+        <!-- Botón para alternar entre tema oscuro y claro -->
         <button id="btn-tema" onclick="alternarTema()" style="background: none; border: 1px solid var(--accent-neon); padding: 5px 5px; cursor: pointer; border-radius: 8px;">🌙</button>
     </header>
 
+    <!-- MAIN: Formulario de bienvenida para ingresar el nombre del usuario -->
     <main>
         <h1 style="margin-bottom: 1%;">Bienvenid@!</h1>
         <h4>Introducí tu nombre:</h4>
         
         <div style="max-width: 400px;">
+            <!-- Formulario: el usuario ingresa su nombre antes de pasar al tótem -->
             <form id="form-bienvenida">
                 <input type="text" id="bienvenida-nombre" placeholder="Tu nombre..." required>
                 <button type="submit" class="btn-success">Enviar</button>
@@ -37,21 +53,24 @@
 
     <script>
         const formBienvenida = document.getElementById("form-bienvenida");
+
         formBienvenida.addEventListener("submit", event => {
-            event.preventDefault(); // Evitamos que la página se recargue
+            event.preventDefault(); // Evitamos que la página se recargue al enviar el form
 
             const nombreUsuario = document.getElementById("bienvenida-nombre").value;
 
             if(nombreUsuario.length > 0) {
-                // Guardamos el nombre en el navegador
+                // Guardamos el nombre en sessionStorage para usarlo durante toda la sesión
                 sessionStorage.setItem("nombreUsuario", nombreUsuario);
                 // Redirigimos al tótem de productos
                 window.location.href = "productos.html";
             }
         });
     </script>
+
+<!-- FOOTER: Pie de página con el copyright -->
 <footer>
-        <p style="text-align: center; margin: 1% 1% 1% 1%;">&copy; 2026 Retro-Arcade Zone</p>
+    <p style="text-align: center; margin: 1% 1% 1% 1%;">&copy; 2026 Retro-Arcade Zone</p>
 </footer>
 </body>
 
