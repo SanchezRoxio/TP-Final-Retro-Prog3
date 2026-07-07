@@ -6,7 +6,7 @@ import session from "express-session";
 
 // Importamos nuestras rutas, middlewares y utilidades desde el barril
 import { loggerURL } from "./src/api/middlewares/middlewares.js";
-import { authRoutes, productRoutes, userRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { authRoutes, productRoutes, userRoutes, viewRoutes, salesRoutes } from "./src/api/routes/index.js";
 import { join, __dirname } from "./src/api/utils/index.js";
 
 // Config
@@ -38,8 +38,9 @@ app.use("/api/users", userRoutes);
 app.use("/dashboard", viewRoutes);
 app.use("/login", authRoutes);
 app.use("/", viewRoutes);
+app.use("/api/sales", salesRoutes); 
 
-// Ruta raíz opcional
+// Ruta raíz 
 app.get("/", (req, res) => {
     res.redirect("/login");
 });

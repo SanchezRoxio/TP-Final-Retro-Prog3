@@ -23,7 +23,7 @@ async function obtenerProductos() {
         let data = await respuesta.json();
         productos = data.payload; 
         mostrarProductos(productos);
-        //Mostrar carrito una vez que tenemos los productos cargados
+        // Mostrar carrito una vez que tenemos los productos cargados
         mostrarCarrito();
     } catch(error) {
         console.error("Error al obtener productos:", error);
